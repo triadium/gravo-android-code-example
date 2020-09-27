@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#7F77B5</color>
+    <color name="colorPrimaryDark">#d4d4d4</color>
+    <color name="colorAccent">#777df9</color>
+    <color name="colorBackground">#eeeeee</color>
+    <color name="colorBackgroundPlan">#3399cc</color>
+    <color name="colorBackgroundOnTime">#339933</color>
+    <color name="colorBackgroundLate">#ff6666</color>
+    <color name="colorBackgroundNoPlans">#e69966</color>
+    <color name="colorBackgroundAbsence">#999999</color>
+    <color name="colorFooter">#333</color>
+    <color name="colorBlack">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="darkGrey">#3a3a3a</color>
+    <color name="white50per">#80FFFFFF</color>
+    <color name="colorGreyButton">#999999</color>
+    <color name="colorLightGreyButton">#CCC</color>
+    <color name="colorLightBlueButton">#3399cc</color>
+    <color name="colorBlueForBottomNavigation">#3399cc</color>
+    <color name="colorRedError">#ed6340</color>
+    <color name="colorRedFrame">#f1450c</color>
+    <color name="colorBackgroundCurrentDay">#de7676</color>
+    <color name="colorOrangeSettingsBackground">#e69867</color>
+    <color name="colorGeneralDay">#aab4ba</color>
+    <color name="colorDayOfWeekName">#e9b0b0</color>
+    <color name="colorCurrentDayOfWeekName">#cc6666</color>
+    <color name="colorCalendarBackground">#ffffff</color>
+    <color name="colorCalendarDateText">#aab4ba</color>
+    <color name="colorCalendarNoteText">#000000</color>
+    <color name="colorCalendarTodayText">#ff0000</color>
+    <color name="colorCalendarWorkPlaceAliasText">#3a3a3a</color>
+</resources>

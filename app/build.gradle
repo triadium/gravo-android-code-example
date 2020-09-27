@@ -1,0 +1,113 @@
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        classpath 'io.fabric.tools:gradle:1.+'
+    }
+}
+apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+    google()
+}
+
+
+android {
+    signingConfigs {
+        prod_release {
+            keyAlias 'gravo'
+            keyPassword 'some-secret'
+            storeFile file("$rootDir/app/keystoregravo.jks")
+            storePassword 'some-secret'
+        }
+    }
+    compileSdkVersion 25
+    buildToolsVersion "26.0.2"
+    flavorDimensions "phone"
+
+    productFlavors {
+        dev {
+            // Enable pre-dexing to produce an APK that can be tested on
+            // Android 5.0+ without the time-consuming DEX build processes.
+            //minSdkVersion 21
+            minSdkVersion 16
+            signingConfig signingConfigs.prod_release
+            dimension "phone"
+        }
+        prod {
+            // The actual minSdkVersion for the production version.
+            minSdkVersion 16
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.prod_release
+            dimension "phone"
+        }
+    }
+    defaultConfig {
+        applicationId "ru.gravo"
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    dexOptions {
+        javaMaxHeapSize "2g"
+        preDexLibraries = false
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.prod_release
+        }
+        debug {
+            minifyEnabled false
+            signingConfig signingConfigs.prod_release
+            //ext.enableCrashlytics = false
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.google.code.findbugs'
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.4.0'
+    compile 'com.android.support:design:25.4.0'
+    //retrofit
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.8.0'
+    //rxjava 2
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    compile 'io.reactivex.rxjava2:rxjava:2.1.1'
+    //butterknife
+    compile 'com.jakewharton:butterknife:8.7.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'
+    //mosby + conductor
+    compile 'com.bluelinelabs:conductor-support:2.1.4'
+    compile 'com.hannesdorfmann.mosby3:mvp-conductor:3.0.0'
+    compile 'com.hannesdorfmann.mosby3:viewstate:3.0.4'
+    compile 'com.hannesdorfmann.mosby3:viewstate-conductor:3.0.0'
+    compile 'com.madgag.spongycastle:core:1.54.0.0'
+    compile 'com.madgag.spongycastle:prov:1.54.0.0'
+    compile 'com.madgag.spongycastle:pkix:1.54.0.0'
+    compile 'com.madgag.spongycastle:pg:1.54.0.0'
+    //    testCompile 'junit:junit:4.12'
+    compile 'de.hdodenhof:circleimageview:2.1.0'
+    //database
+    compile 'com.orhanobut:hawk:1.+'
+    //justify tags
+    compile 'com.google.android:flexbox:0.3.0'
+    compile('com.crashlytics.sdk.android:crashlytics:2.6.8@aar') {
+        transitive = true;
+    }
+    compile 'com.android.support:multidex:1.0.2'
+}
